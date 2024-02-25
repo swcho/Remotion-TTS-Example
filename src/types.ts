@@ -19,6 +19,6 @@ export type Voice = (typeof voices)[number];
 export const compSchema = z.object({
 	text: z.string(),
 	titleColor: zColor(),
-	voice: z.enum(voices),
+	voice: z.string(),
 	displaySpeed: z.number(),
 });

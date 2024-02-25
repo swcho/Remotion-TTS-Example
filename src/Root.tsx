@@ -5,6 +5,9 @@ import {getAudioDurationInSeconds} from '@remotion/media-utils';
 import {audioAlreadyExists, createS3Url, synthesizeSpeech} from './tts';
 import {waitForNoInput} from './debounce';
 
+// text: 'Working with TTS (Azure + AWS S3)',
+const TARGET_TEXT = '안녕하세요. TTS 예제 입니다.';
+
 export const RemotionRoot: React.FC = () => {
 	return (
 		<>
@@ -16,9 +19,9 @@ export const RemotionRoot: React.FC = () => {
 				width={1920}
 				height={1080}
 				defaultProps={{
-					text: 'Working with TTS (Azure + AWS S3)',
+					text: TARGET_TEXT,
 					titleColor: 'black',
-					voice: 'enUSWoman1' as const,
+					voice: 'ko-KR-SunHiNeural',
 					displaySpeed: 10,
 				}}
 				calculateMetadata={async ({props, abortSignal}) => {
@@ -37,6 +40,8 @@ export const RemotionRoot: React.FC = () => {
 					});
 
 					const duration = await getAudioDurationInSeconds(fileName);
+					
+					console.log(RemotionRoot.name, {fileName, duration})
 
 					return {props, durationInFrames: Math.ceil(duration * 30)};
 				}}

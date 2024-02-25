@@ -27,16 +27,14 @@ export const voiceMap: {[key in Voice]: string} = {
 
 export const synthesizeSpeech = async (
 	text: string,
-	voice: Voice
+	voice: string
 ): Promise<void> => {
 	const speechConfig = SpeechConfig.fromSubscription(
 		env.AZURE_TTS_KEY,
 		env.AZURE_TTS_REGION
 	);
 
-	if (!voiceMap[voice]) {
-		throw new Error('Voice not found');
-	}
+	const ttsVoice = voiceMap[voice as Voice] || voice
 
 	const fileName = getFileName({text, voice});
 
@@ -47,7 +45,7 @@ export const synthesizeSpeech = async (
 
 	const ssml = `
                 <speak version="1.0" xml:lang="en-US">
-									<voice name="${voiceMap[voice]}">
+									<voice name="${ttsVoice}">
 										<break time="100ms" /> ${text}
 									</voice>
                 </speak>`.trim();
@@ -82,7 +80,7 @@ export const audioAlreadyExists = async ({
 	voice,
 }: {
 	text: string;
-	voice: Voice;
+	voice: string;
 }) => {
 	const fileName = getFileName({text, voice});
 	const s3 = new S3Client({
@@ -122,7 +120,7 @@ const uploadTtsToS3 = async (audioData: ArrayBuffer, fileName: string) => {
 	);
 };
 
-export const createS3Url = ({text, voice}: {text: string; voice: Voice}) => {
+export const createS3Url = ({text, voice}: {text: string; voice: string}) => {
 	const filename = getFileName({text, voice});
 
 	return `https://${env.AWS_S3_BUCKET_NAME}.s3.amazonaws.com/${filename}`;
