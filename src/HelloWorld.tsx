@@ -1,4 +1,4 @@
-import {Audio} from 'remotion';
+import {Audio, Sequence} from 'remotion';
 import {
 	AbsoluteFill,
 	interpolate,
@@ -32,12 +32,17 @@ export const HelloWorld: React.FC<z.infer<typeof compSchema>> = ({
 	return (
 		<AbsoluteFill style={{backgroundColor: 'white'}}>
 			<AbsoluteFill style={{opacity}}>
-				<Title
-					displaySpeed={displaySpeed}
-					text={text}
-					titleColor={titleColor}
-				/>
-				<Audio src={createS3Url({text, voice})} />
+				{/* <Sequence>
+					<SpeechSyn text="직접 " />
+				</Sequence> */}
+				<Sequence>
+					<Title
+						displaySpeed={displaySpeed}
+						text={text}
+						titleColor={titleColor}
+					/>
+					<Audio src={createS3Url({text, voice})} />
+				</Sequence>
 			</AbsoluteFill>
 		</AbsoluteFill>
 	);
