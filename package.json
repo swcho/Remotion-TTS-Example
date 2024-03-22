@@ -12,6 +12,9 @@
 	"license": "UNLICENSED",
 	"dependencies": {
 		"@aws-sdk/client-s3": "^3.17.0",
+		"@mdx-js/loader": "^3.0.1",
+		"@mdx-js/mdx": "^3.0.1",
+		"@mdx-js/react": "^3.0.1",
 		"@remotion/cli": "^4.0.0",
 		"@remotion/media-utils": "^4.0.0",
 		"@remotion/zod-types": "^4.0.0",
@@ -29,7 +32,7 @@
 		"eslint": "^8.43.0",
 		"prettier": "^2.8.8",
 		"ts-node": "^10.0.0",
-		"typescript": "^5.3.3",
+		"typescript": "^5.4.2",
 		"zod": "^3.21.4"
 	}
 }
