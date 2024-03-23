@@ -1,43 +1,19 @@
 import * as React from 'react';
 import {AbsoluteFill} from 'remotion';
-import {MDXProvider} from '@mdx-js/react';
-import {fromMarkdown} from 'mdast-util-from-markdown'
-import {mdxJsxFromMarkdown} from 'mdast-util-mdx-jsx'
-import {mdxJsx} from 'micromark-extension-mdx-jsx'
-import * as acorn from "acorn"
 
-import Content from '!!raw-loader!./steps.mdx';
-import Wrapper from './Wrapper';
-import {StepContextProvider} from './StepContext';
+import mdxSteps from '!!raw-loader!./steps.mdx';
+import TalkLayout from './TalkLayout';
 
-const COMPONENTS: React.ComponentProps<typeof MDXProvider>['components'] = {
-	wrapper: Wrapper,
-	hr: (props) => {
-		console.log('hr', props)
-		return (
-			<hr />
-		)
-	}
-};
-
+export function notEmpty<TValue>(
+  value: TValue | null | undefined | '',
+): value is TValue {
+  return value !== null && value !== undefined && value !== '';
+}
 
 function Talk() {
-	console.log('Talk');
-	React.useEffect(() => {
-		const tree = fromMarkdown(Content, {
-			extensions: [mdxJsx({acorn, addResult: true})],
-			mdastExtensions: [mdxJsxFromMarkdown()]
-		})
-		const result = fromMarkdown(Content)
-		console.log({ result, tree })
-	}, [])
 	return (
 		<AbsoluteFill style={{backgroundColor: 'white'}}>
-			<StepContextProvider>
-				<MDXProvider components={COMPONENTS}>
-					{Content}
-				</MDXProvider>
-			</StepContextProvider>
+			<TalkLayout mdx={mdxSteps} />
 		</AbsoluteFill>
 	);
 }
