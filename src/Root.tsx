@@ -14,6 +14,14 @@ export const RemotionRoot: React.FC = () => {
 	return (
 		<>
 			<Composition
+				id='Talk'
+				component={Talk}
+				durationInFrames={6000}
+				fps={30}
+				width={1280}
+				height={720}
+			/>
+			<Composition
 				id="HelloWorld"
 				component={HelloWorld}
 				durationInFrames={150}
@@ -53,14 +61,6 @@ export const RemotionRoot: React.FC = () => {
 					return {props, durationInFrames: Math.ceil(duration * 30)};
 				}}
 				schema={compSchema}
-			/>
-			<Composition
-				id='Talk'
-				component={Talk}
-				durationInFrames={6000}
-				fps={30}
-				width={1280}
-				height={720}
 			/>
 		</>
 	);

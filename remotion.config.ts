@@ -5,8 +5,8 @@
  * All configuration options: https://remotion.dev/docs/config
  */
 import {Config} from '@remotion/cli/config';
-import { enableMdx } from './remotion.config.mdx';
+// import { enableMdx } from './remotion.config.mdx';
 
 Config.setVideoImageFormat('jpeg');
 Config.setOverwriteOutput(true);
-Config.overrideWebpackConfig(enableMdx)
+// Config.overrideWebpackConfig(enableMdx)

@@ -20,10 +20,15 @@
 		"@remotion/zod-types": "^4.0.0",
 		"@types/node": "20.0.0",
 		"md5": "^2.3.0",
+		"mdast-util-from-markdown": "^2.0.0",
+		"mdast-util-mdx-jsx": "^3.1.2",
+		"micromark-extension-mdx-jsx": "^3.0.0",
 		"microsoft-cognitiveservices-speech-sdk": "^1.17.0",
 		"react": "^18.0.0",
 		"react-dom": "^18.0.0",
-		"remotion": "^4.0.0"
+		"remark-parse": "^11.0.0",
+		"remotion": "^4.0.0",
+		"unified": "^11.0.4"
 	},
 	"devDependencies": {
 		"@remotion/eslint-config": "^4.0.0",
@@ -31,6 +36,7 @@
 		"@types/react": "^18.0.26",
 		"eslint": "^8.43.0",
 		"prettier": "^2.8.8",
+		"raw-loader": "^4.0.2",
 		"ts-node": "^10.0.0",
 		"typescript": "^5.4.2",
 		"zod": "^3.21.4"
