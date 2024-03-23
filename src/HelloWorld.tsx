@@ -1,3 +1,5 @@
+import * as React from 'react'
+
 import {Audio, Sequence} from 'remotion';
 import {
 	AbsoluteFill,
@@ -9,6 +11,14 @@ import {z} from 'zod';
 import {compSchema} from './types';
 import {Title} from './HelloWorld/Title';
 import {createS3Url} from './tts';
+import { getVoices, speak } from './speech';
+
+async function speakSomething() {
+		const voices = await getVoices();
+		console.log(voices)
+		await speak('시간이 얼마나 걸리는지 테스트 해 봅니다.')
+
+}
 
 export const HelloWorld: React.FC<z.infer<typeof compSchema>> = ({
 	text,
@@ -28,6 +38,10 @@ export const HelloWorld: React.FC<z.infer<typeof compSchema>> = ({
 			extrapolateRight: 'clamp',
 		}
 	);
+	
+	React.useEffect(() => {
+		speakSomething()
+	}, [])
 
 	return (
 		<AbsoluteFill style={{backgroundColor: 'white'}}>

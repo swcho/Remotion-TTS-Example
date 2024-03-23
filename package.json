@@ -4,7 +4,9 @@
 	"description": "My Remotion video",
 	"scripts": {
 		"start": "remotion studio",
-		"build": "remotion render HelloWorld out/video.mp4",
+		"build:HelloWorld": "remotion render HelloWorld out/HelloWorld.mp4",
+		"build:Talk": "remotion render Talk out/video.mp4",
+		"add-audio:Talk": "ffmpeg -y -i out/video.mp4 -i src/Talk/speaker.webm -c:v copy -map 0 -map 1:a -shortest out/talk.mp4",
 		"upgrade": "remotion upgrade",
 		"test": "eslint src --ext ts,tsx,js,jsx && tsc"
 	},
